@@ -14,12 +14,12 @@
 <body>
     <h1>Agregar Nuevo Contacto</h1>
     
-    <form method="POST" action="{{ url_for('agregar_contacto') }}">
-        <label for="nombre">Nombre Completo:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
+    <form method="POST" action="{{ url_for('editar_contacto', id_contacto=contacto[0]) if contacto else url_for('agregar_contacto') }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ contacto[1] if contacto else '' }}" required><br><br>
         
         <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" required><br>
+        <input type="text" id="telefono" name="telefono" value="{{ contacto[2] if contacto else '' }}" required><br><br>
         
         <input type="submit" value="Guardar Contacto">
     </form>

@@ -19,13 +19,23 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for contacto in contactos %}
-            <tr>
-                <td>{{ contacto[0] }}</td> <td>{{ contacto[1] }}</td> <td>{{ contacto[2] }}</td> </tr>
-            {% endfor %}
+    {% for contacto in contactos %}
+    <tr>
+        <td>{{ contacto[0] }}</td> <td>{{ contacto[1] }}</td> <td>{{ contacto[2] }}</td> <td>
+            <a href="{{ url_for('editar_contacto', id_contacto=contacto[0]) }}">
+                Editar
+            </a> 
+            |
+            <a href="{{ url_for('eliminar_contacto', id_contacto=contacto[0]) }}" 
+               onclick="return confirm('¿Estás seguro de que quieres eliminar a {{ contacto[1] }}?');">
+                Eliminar
+        </td>
+    </tr>
+    {% endfor %}
         </tbody>
     </table>
     <p style="margin-top: 30px;">
